@@ -44,6 +44,7 @@
 
   <script>
     // Trang giohang.html
+// Hàm load giỏ hàng
 function loadCart() {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let cartList = document.getElementById('cartList');
@@ -105,22 +106,6 @@ document.getElementById("clearCart").addEventListener("click", function() {
 
 window.onload = loadCart;
 
-
-    function removeItem(index) {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
-      cart.splice(index, 1);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      loadCart();
-    }
-
-    document.getElementById("clearCart").addEventListener("click", function() {
-      if (confirm("Bạn có chắc muốn xóa toàn bộ giỏ hàng không?")) {
-        localStorage.removeItem("cart");
-        loadCart();
-      }
-    });
-
-    loadCart();
   </script>
 
 </body>
