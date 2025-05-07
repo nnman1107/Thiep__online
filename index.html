@@ -90,23 +90,6 @@
     <script src="JS/bootstrap.min.js"></script>
 
     <script>
-        const productList = document.getElementById("productList");
-
-        products.forEach(product => {
-            const productCard = document.createElement("div");
-            productCard.className = "col-md-3 mb-4";
-            productCard.innerHTML = `
-                <div class="card">
-                    <img src="${product.img}" class="card-img-top" alt="${product.name}">
-                    <div class="card-body">
-                        <h5 class="card-title">${product.name}</h5>
-                        <p class="card-text">Giá: ${product.price.toLocaleString()} VND</p>
-                        <button class="btn btn-primary addToCart" data-id="${product.id}">Thêm vào giỏ</button>
-                    </div>
-                </div>
-            `;
-            productList.appendChild(productCard);
-        });
 
        
 document.querySelectorAll('.add-to-cart').forEach(function(button) {
