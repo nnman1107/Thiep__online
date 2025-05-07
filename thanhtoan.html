@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Web Bán Thiệp</title>
-
-    <!-- Bootstrap CSS -->
+    <title>Thanh Toán - Web Thiệp</title>
     <link rel="stylesheet" href="CSS/bootstrap.min.css">
-    <link rel="stylesheet" href="CSS/style.css"> 
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
@@ -21,16 +18,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Trang Chủ</a>
+                        <a class="nav-link active" href="index.html">Trang Chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="sanpham.html">Sản Phẩm</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="signup.html">Đăng Ký</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">Đăng Nhập</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="giohang.html">Giỏ Hàng</a>
@@ -40,79 +31,104 @@
         </div>
     </nav>
 
-    <div class="hero-section" style="background-image: url('hero-image.jpg'); background-size: cover; color: white; padding: 100px 0;">
-        <h1 class="text-center special-title">Chào mừng đến với Thiệp Online!</h1>
-    </div>
-
-    <div class="container my-5">
-        <h2 class="text-center">Sản Phẩm Nổi Bật</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="IMG/PT1.jpg" class="card-img-top" alt="Sản phẩm 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Thiệp Mời Sinh Nhật</h5>
-                        <p class="card-text">Giá: 100.000 VND</p>
-                        <button class="btn btn-primary add-to-cart" data-name="Thiệp Mời Sinh Nhật" data-price="100000" data-img="../IMG/PT1.jpg">Thêm vào giỏ</button>
-                    </div>
-                </div>
+    <div class="container mt-5">
+        
+        <h2 class="text-center">Nhập Thông Tin</h2>
+        <form id="checkoutForm">
+           
+            <div class="form-group">
+                <label for="recipientName">Tên người nhận</label>
+                <input type="text" class="form-control" id="recipientName" placeholder="Nhập tên người nhận" required>
             </div>
-            
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="IMG/PT2.jpg" class="card-img-top" alt="Sản phẩm 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Thiệp Cưới</h5>
-                        <p class="card-text">Giá: 150.000 VND</p>
-                        <button class="btn btn-primary add-to-cart" data-name="Thiệp Cưới" data-price="150000" data-img="../IMG/PT2.jpg">Thêm vào giỏ</button>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="recipientAddress">Địa chỉ người nhận</label>
+                <input type="text" class="form-control" id="recipientAddress" placeholder="Nhập địa chỉ người nhận" required>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="IMG/PT3.jpg" class="card-img-top" alt="Sản phẩm 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Thiệp Tình Yêu</h5>
-                        <p class="card-text">Giá: 120.000 VND</p>
-                        <button class="btn btn-primary add-to-cart" data-name="Thiệp Tình Yêu" data-price="120000" data-img="../IMG/PT3.jpg">Thêm vào giỏ</button>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="occasionDate">Ngày tổ chức</label>
+                <input type="date" class="form-control" id="occasionDate" required>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="cardTheme">Chủ đề thiệp</label>
+                <select class="form-control" id="cardTheme" required>
+                    <option value="birthday">Sinh nhật</option>
+                    <option value="wedding">Cưới hỏi</option>
+                    <option value="congratulations">Chúc mừng</option>
+                    <option value="thankYou">Cảm ơn</option>
+                    <option value="getWell">Chúc mau khỏe</option>
+                </select>
+            </div>
     </div>
-
-    <!-- Footer -->
-    <div class="footer text-center bg-dark text-white py-4">
-        <p>&copy; 2025 Thiệp Online - All Rights Reserved</p>
+    <h2 class="text-center">Thanh Toán</h2>
+    <form id="checkoutForm">
+            <div class="form-group">
+                <label for="fullName">Họ và tên</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Nhập họ tên" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Địa chỉ giao hàng</label>
+                <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ giao hàng" required>
+            </div>
+            <div class="form-group">
+                <label for="paymentMethod">Phương thức thanh toán</label>
+                <select class="form-control" id="paymentMethod" required>
+                    <option value="creditCard">Thẻ tín dụng</option>
+                    <option value="bankTransfer">Chuyển khoản ngân hàng</option>
+                    <option value="cashOnDelivery">Thanh toán khi nhận hàng</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <h4>Tổng tiền: <span id="checkoutTotalPrice">0 VND</span></h4>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Xác Nhận Thanh Toán</button>
+        </form>
     </div>
-
-    <script src="JS/jquery-3.7.1.min.js"></script>
-    <script src="JS/bootstrap.min.js"></script>
 
     <script>
-        
-       
-document.querySelectorAll('.add-to-cart').forEach(function(button) {
-    button.addEventListener('click', function() {
-        const name = this.dataset.name;
-        const price = this.dataset.price;
-        const img = this.dataset.img;  
-        
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let found = cart.find(item => item.name === name);
-        
-        if (found) {
-            found.quantity += 1;
-        } else {
-            cart.push({ name: name, price: parseInt(price), img: img, quantity: 1 });
+        function loadCartForCheckout() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let totalPrice = 0;
+
+            // Nếu giỏ hàng không có sản phẩm
+            if (cart.length === 0) {
+                document.getElementById("checkoutTotalPrice").textContent = "0 VND";
+                alert("Giỏ hàng của bạn hiện tại đang trống!");
+                return;
+            }
+
+            // Tính tổng tiền giỏ hàng
+            cart.forEach(item => {
+                totalPrice += item.price * item.quantity;
+            });
+
+            document.getElementById("checkoutTotalPrice").textContent = totalPrice.toLocaleString() + " VND";
         }
 
-        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById("checkoutForm").addEventListener("submit", function (e) {
+            e.preventDefault();
 
-        alert(`Đã thêm "${name}" vào giỏ hàng!`);
-    });
-});
+            const fullName = document.getElementById("fullName").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const recipientName = document.getElementById("recipientName").value.trim();
+            const recipientAddress = document.getElementById("recipientAddress").value.trim();
+            const occasionDate = document.getElementById("occasionDate").value.trim();
+            const cardTheme = document.getElementById("cardTheme").value;
+            const paymentMethod = document.getElementById("paymentMethod").value;
+            const totalPrice = document.getElementById("checkoutTotaalPrice").textContent;
 
+            if (!fullName || !address || !recipientName || !recipientAddress || !occasionDate || !cardTheme || !paymentMethod) {
+                alert("Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
+
+            alert(`Thanh toán thành công! Tổng tiền: ${totalPrice}\nChủ đề thiệp: ${cardTheme}\nNgày tổ chức: ${occasionDate}\nNgười nhận: ${recipientName}\nĐịa chỉ người nhận: ${recipientAddress}`);
+            
+            // Xóa giỏ hàng sau khi thanh toán thành công
+            localStorage.removeItem("cart");
+            window.location.href = "index.html"; 
+        });
+
+        loadCartForCheckout();
     </script>
 </body>
 </html>
