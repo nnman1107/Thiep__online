@@ -30,6 +30,7 @@
             </div>
         </div>
     </nav>
+
     <div class="container mt-5">
         <h2 class="text-center">Thanh Toán</h2>
         <form id="checkoutForm">
@@ -38,8 +39,30 @@
                 <input type="text" class="form-control" id="fullName" placeholder="Nhập họ tên" required>
             </div>
             <div class="form-group">
-                <label for="address">Địa chỉ</label>
+                <label for="address">Địa chỉ giao hàng</label>
                 <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ giao hàng" required>
+            </div>
+            <div class="form-group">
+                <label for="recipientName">Tên người nhận</label>
+                <input type="text" class="form-control" id="recipientName" placeholder="Nhập tên người nhận" required>
+            </div>
+            <div class="form-group">
+                <label for="recipientAddress">Địa chỉ người nhận</label>
+                <input type="text" class="form-control" id="recipientAddress" placeholder="Nhập địa chỉ người nhận" required>
+            </div>
+            <div class="form-group">
+                <label for="occasionDate">Ngày tổ chức</label>
+                <input type="date" class="form-control" id="occasionDate" required>
+            </div>
+            <div class="form-group">
+                <label for="cardTheme">Chủ đề thiệp</label>
+                <select class="form-control" id="cardTheme" required>
+                    <option value="birthday">Sinh nhật</option>
+                    <option value="wedding">Cưới hỏi</option>
+                    <option value="congratulations">Chúc mừng</option>
+                    <option value="thankYou">Cảm ơn</option>
+                    <option value="getWell">Chúc mau khỏe</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="paymentMethod">Phương thức thanh toán</label>
@@ -61,6 +84,14 @@
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
             let totalPrice = 0;
 
+            // Nếu giỏ hàng không có sản phẩm
+            if (cart.length === 0) {
+                document.getElementById("checkoutTotalPrice").textContent = "0 VND";
+                alert("Giỏ hàng của bạn hiện tại đang trống!");
+                return;
+            }
+
+            // Tính tổng tiền giỏ hàng
             cart.forEach(item => {
                 totalPrice += item.price * item.quantity;
             });
@@ -73,16 +104,21 @@
 
             const fullName = document.getElementById("fullName").value.trim();
             const address = document.getElementById("address").value.trim();
+            const recipientName = document.getElementById("recipientName").value.trim();
+            const recipientAddress = document.getElementById("recipientAddress").value.trim();
+            const occasionDate = document.getElementById("occasionDate").value.trim();
+            const cardTheme = document.getElementById("cardTheme").value;
             const paymentMethod = document.getElementById("paymentMethod").value;
             const totalPrice = document.getElementById("checkoutTotalPrice").textContent;
 
-            if (!fullName || !address || !paymentMethod) {
+            if (!fullName || !address || !recipientName || !recipientAddress || !occasionDate || !cardTheme || !paymentMethod) {
                 alert("Vui lòng điền đầy đủ thông tin!");
                 return;
             }
 
-            alert(`Thanh toán thành công! Tổng tiền: ${totalPrice}`);
+            alert(`Thanh toán thành công! Tổng tiền: ${totalPrice}\nChủ đề thiệp: ${cardTheme}\nNgày tổ chức: ${occasionDate}\nNgười nhận: ${recipientName}\nĐịa chỉ người nhận: ${recipientAddress}`);
             
+            // Xóa giỏ hàng sau khi thanh toán thành công
             localStorage.removeItem("cart");
             window.location.href = "index.html"; 
         });
