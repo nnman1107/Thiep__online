@@ -95,7 +95,7 @@ document.querySelectorAll('.add-to-cart').forEach(function(button) {
     button.addEventListener('click', function() {
         const name = this.dataset.name;
         const price = this.dataset.price;
-        const img = this.dataset.img;  
+        const img = this.dataset.image;  
         
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         let found = cart.find(item => item.name === name);
