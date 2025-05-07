@@ -58,9 +58,8 @@
                     <option value="getWell">Chúc mau khỏe</option>
                 </select>
             </div>
-    </div>
-    <h2 class="text-center">Thanh Toán</h2>
-    <form id="checkoutForm">
+            
+            <h2 class="text-center mt-4">Thanh Toán</h2>
             <div class="form-group">
                 <label for="fullName">Họ và tên</label>
                 <input type="text" class="form-control" id="fullName" placeholder="Nhập họ tên" required>
@@ -114,7 +113,7 @@
             const occasionDate = document.getElementById("occasionDate").value.trim();
             const cardTheme = document.getElementById("cardTheme").value;
             const paymentMethod = document.getElementById("paymentMethod").value;
-            const totalPrice = document.getElementById("checkoutTotaalPrice").textContent;
+            const totalPrice = document.getElementById("checkoutTotalPrice").textContent;
 
             if (!fullName || !address || !recipientName || !recipientAddress || !occasionDate || !cardTheme || !paymentMethod) {
                 alert("Vui lòng điền đầy đủ thông tin!");
