@@ -61,21 +61,39 @@
                 const confirmPassword = $('#registerConfirmPassword').val().trim();
 
                 let isValid = true;
-                if (!username || !email || !password || !confirmPassword) {
+                $('.error').text(''); // Xóa tất cả thông báo lỗi cũ
+
+                if (!username) {
+                    $('#registerUsername').next('.error').text('Vui lòng nhập tên đăng nhập!');
                     isValid = false;
-                    $('.error').text('Vui lòng điền đầy đủ thông tin!');
-                } else if (password !== confirmPassword) {
-                    isValid = false;
-                    $('.error').text('Mật khẩu không khớp!');
                 }
 
-                if (localStorage.getItem(username)) {
+                if (!email) {
+                    $('#registerEmail').next('.error').text('Vui lòng nhập email!');
                     isValid = false;
-                    $('.error').text('Tài khoản đã tồn tại.');
+                }
+
+                if (!password) {
+                    $('#registerPassword').next('.error').text('Vui lòng nhập mật khẩu!');
+                    isValid = false;
+                }
+
+                if (!confirmPassword) {
+                    $('#registerConfirmPassword').next('.error').text('Vui lòng xác nhận mật khẩu!');
+                    isValid = false;
+                }
+
+                if (password && confirmPassword && password !== confirmPassword) {
+                    $('#registerConfirmPassword').next('.error').text('Mật khẩu không khớp!');
+                    isValid = false;
+                }
+
+                if (username && localStorage.getItem(username)) {
+                    $('#registerUsername').next('.error').text('Tài khoản đã tồn tại.');
+                    isValid = false;
                 }
 
                 if (isValid) {
-                 
                     const user = { username, email, password };
                     localStorage.setItem(username, JSON.stringify(user));
                     alert('Đăng ký thành công!');
