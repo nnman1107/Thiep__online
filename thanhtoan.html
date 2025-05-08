@@ -78,24 +78,9 @@
             document.getElementById("checkoutTotalPrice").textContent = totalPrice.toLocaleString() + " VND";
         }
 
-        document.getElementById("checkoutForm").addEventListener("submit", function (e) {
-            e.preventDefault();
+        
 
-            const fullName = document.getElementById("fullName").value.trim();
-            const address = document.getElementById("address").value.trim();
-            const recipientName = document.getElementById("recipientName").value.trim();
-            const recipientAddress = document.getElementById("recipientAddress").value.trim();
-            const occasionDate = document.getElementById("occasionDate").value.trim();
-            const cardTheme = document.getElementById("cardTheme").value;
-            const paymentMethod = document.getElementById("paymentMethod").value;
-            const totalPrice = document.getElementById("checkoutTotalPrice").textContent;
-
-            if (!fullName || !address || !recipientName || !recipientAddress || !occasionDate || !cardTheme || !paymentMethod) {
-                alert("Vui lòng điền đầy đủ thông tin!");
-                return;
-            }
-
-            alert(`Thanh toán thành công! Tổng tiền: ${totalPrice}\nChủ đề thiệp: ${cardTheme}\nNgày tổ chức: ${occasionDate}\nNgười nhận: ${recipientName}\nĐịa chỉ người nhận: ${recipientAddress}`);
+            alert(`Thanh toán thành công! Tổng tiền: ${totalPrice}\n`);
             
             // Xóa giỏ hàng sau khi thanh toán thành công
             localStorage.removeItem("cart");
