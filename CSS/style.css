@@ -11,6 +11,21 @@ body {
   text-shadow: 1px 1px 2px #333;
   animation: fadeInDown 1s ease-in-out;
 }
+.hero-section {
+    border-radius: 20px;
+    background-color: #d0eaff; /
+    background-blend-mode: overlay; 
+    padding: 100px 0;
+    color: white;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.featured-products {
+    border-radius: 20px;
+    background-color: #d0eaff; 
+    padding: 20px;
+}
 
 .a {
   color: #ff5733;
