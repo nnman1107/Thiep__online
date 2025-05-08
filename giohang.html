@@ -39,73 +39,102 @@
         </div>
         <a href="index.html" class="btn btn-primary mt-3">Tiếp tục mua sắm</a>
     </div>
-</div>
-
+  </div>
 
   <script>
-    // Trang giohang.html
-// Hàm load giỏ hàng
-function loadCart() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let cartList = document.getElementById('cartList');
-    let totalPriceElement = document.getElementById('totalPrice');
-    cartList.innerHTML = ''; 
-    let totalPrice = 0;
+    // Hàm load giỏ hàng
+    function loadCart() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let cartList = document.getElementById('cartList');
+      let totalPriceElement = document.getElementById('totalPrice');
+      cartList.innerHTML = ''; 
+      let totalPrice = 0;
 
-    if (cart.length === 0) {
+      if (cart.length === 0) {
         cartList.innerHTML = "<p class='text-center'>Giỏ hàng của bạn đang trống.</p>";
         totalPriceElement.textContent = "0 VND";
         return;
-    }
+      }
 
-    cart.forEach((item, index) => {
+      cart.forEach((item, index) => {
         const cartItem = document.createElement("div");
         cartItem.className = "col-md-4 mb-4";
         cartItem.innerHTML = `
-            <div class="card">
-                <img src="${item.img}" class="card-img-top" alt="${item.name}">
-                <div class="card-body">
-                    <h5 class="card-title">${item.name}</h5>
-                    <p class="card-text">Giá: ${item.price.toLocaleString()} VND</p>
-                    <p class="card-text">Số lượng: ${item.quantity}</p>
-                    <p class="card-text">Tổng: ${(item.price * item.quantity).toLocaleString()} VND</p>
-                    <button class="btn btn-danger btn-sm btn-remove" data-index="${index}">Xóa</button>
-                </div>
+          <div class="card">
+            <img src="${item.img}" class="card-img-top" alt="${item.name}">
+            <div class="card-body">
+              <h5 class="card-title">${item.name}</h5>
+              <p class="card-text">Giá: ${item.price.toLocaleString()} VND</p>
+              <div class="d-flex align-items-center mb-2">
+                <button class="btn btn-sm btn-secondary btn-decrease" data-index="${index}">-</button>
+                <span class="mx-2" id="quantity-${index}">${item.quantity}</span>
+                <button class="btn btn-sm btn-secondary btn-increase" data-index="${index}">+</button>
+              </div>
+              <p class="card-text">Tổng: <span id="item-total-${index}">${(item.price * item.quantity).toLocaleString()}</span> VND</p>
+              <button class="btn btn-danger btn-sm btn-remove" data-index="${index}">Xóa</button>
             </div>
+          </div>
         `;
         cartList.appendChild(cartItem);
         totalPrice += item.price * item.quantity;
-    });
+      });
 
-    totalPriceElement.textContent = totalPrice.toLocaleString() + " VND";
+      totalPriceElement.textContent = totalPrice.toLocaleString() + " VND";
 
-    // Thêm sự kiện xóa cho từng sản phẩm
-    document.querySelectorAll(".btn-remove").forEach(button => {
+      // Thêm sự kiện nút Xóa
+      document.querySelectorAll(".btn-remove").forEach(button => {
         button.addEventListener("click", function() {
-            const index = this.getAttribute("data-index");
-            removeItem(index);
+          const index = this.getAttribute("data-index");
+          removeItem(index);
         });
-    });
-}
+      });
 
-// Hàm xóa sản phẩm khỏi giỏ hàng
-function removeItem(index) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    loadCart();
-}
+      // Thêm sự kiện nút Tăng
+      document.querySelectorAll(".btn-increase").forEach(button => {
+        button.addEventListener("click", function() {
+          const index = this.getAttribute("data-index");
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          cart[index].quantity++;
+          localStorage.setItem('cart', JSON.stringify(cart));
+          loadCart();
+        });
+      });
 
-// Xóa toàn bộ giỏ hàng
-document.getElementById("clearCart").addEventListener("click", function() {
-    if (confirm("Bạn có chắc muốn xóa toàn bộ giỏ hàng không?")) {
+      // Thêm sự kiện nút Giảm
+      document.querySelectorAll(".btn-decrease").forEach(button => {
+        button.addEventListener("click", function() {
+          const index = this.getAttribute("data-index");
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          if (cart[index].quantity > 1) {
+            cart[index].quantity--;
+          } else {
+            if (confirm("Số lượng = 1. Bạn có muốn xóa sản phẩm này không?")) {
+              cart.splice(index, 1);
+            }
+          }
+          localStorage.setItem('cart', JSON.stringify(cart));
+          loadCart();
+        });
+      });
+    }
+
+    // Hàm xóa sản phẩm
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart();
+    }
+
+    // Xóa toàn bộ giỏ hàng
+    document.getElementById("clearCart").addEventListener("click", function() {
+      if (confirm("Bạn có chắc muốn xóa toàn bộ giỏ hàng không?")) {
         localStorage.removeItem("cart");
         loadCart();
-    }
-});
+      }
+    });
 
-window.onload = loadCart;
-
+    window.onload = loadCart;
   </script>
 
 </body>
